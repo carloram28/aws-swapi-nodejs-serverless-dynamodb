@@ -1,10 +1,10 @@
 const axios = require('axios');
-const filmAdapter = require('../../adapter/filmsAdapter');
-const peopleAdapter = require('../../adapter/peopleAdapter');
-const planetAdapter = require('../../adapter/planetsAdapter');
-const speciesAdapter = require('../../adapter/speciesAdapter');
-const starshipAdapter = require('../../adapter/starshipsAdapter');
-const vehicleAdapter = require('../../adapter/starshipsAdapter');
+const filmAdapter = require('../../mapper/filmsAdapter');
+const peopleAdapter = require('../../mapper/peopleAdapter');
+const planetAdapter = require('../../mapper/planetsAdapter');
+const speciesAdapter = require('../../mapper/speciesAdapter');
+const starshipAdapter = require('../../mapper/starshipsAdapter');
+const vehicleAdapter = require('../../mapper/starshipsAdapter');
 
 module.exports.getFilmsService = async () => {
   const API_URL = 'https://swapi.py4e.com/api/films';
