@@ -4,7 +4,7 @@
   "description": "En este prueba se realizó una integración entre los servicios de AWS(Lambda, API Gateway, DynamoDB) y el framework Serverless, utilizando en el backend Node JS.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "set NODE_OPTIONS=--experimental-vm-modules && npx jest"
   },
   "keywords": [],
   "author": "",
