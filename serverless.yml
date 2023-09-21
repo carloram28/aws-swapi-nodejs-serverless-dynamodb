@@ -1,0 +1,106 @@
+service: aws-swapi-serverless-nodejs-dynamodb
+frameworkVersion: '3'
+
+plugins:
+  - serverless-offline
+
+  
+    
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-west-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:*
+      Resource:
+        - arn:aws:dynamodb:us-west-1:583637451755:table/userawsTable
+  
+
+functions:
+  createUser:
+    handler: src/controllers/userController.createUserController
+    events:
+      - httpApi:
+          path: /users
+          method: POST
+  getUsers:
+    handler: src/controllers/userController.getUsersController
+    events:
+      - httpApi:
+          path: /users
+          method: GET
+  getUser:
+    handler: src/controllers/userController.getUserController
+    events:
+      - httpApi:
+          path: /users/{id}
+          method: get
+  updateUser:
+    handler: src/controllers/userController.updateUserController
+    events:
+      - httpApi:
+          path: /users/{id}
+          method: put
+  deleteUser:
+    handler: src/controllers/userController.deleteUserController
+    events:
+      - httpApi:
+          path: /users/{id}
+          method: delete        
+
+  getPeople:
+    handler: src/controllers/swapiController.getPeople
+    events:
+      - httpApi:
+          path: /people
+          method: get
+  
+  getFilms:
+    handler: src/controllers/swapiController.getFilms
+    events:
+      - httpApi:
+          path: /films
+          method: get
+  getPlanets:
+    handler: src/controllers/swapiController.getPlanets
+    events:
+      - httpApi:
+          path: /planets
+          method: get
+
+  getSpecies:
+    handler: src/controllers/swapiController.getSpecies
+    events:
+      - httpApi:
+          path: /species
+          method: get  
+
+  getStarships:
+    handler: src/controllers/swapiController.getStarships
+    events:
+      - httpApi:
+          path: /starships
+          method: get 
+
+  getVehicles:
+    handler: src/controllers/swapiController.getVehicles
+    events:
+      - httpApi:
+          path: /vehicles
+          method: get                           
+resources:
+  Resources:
+    userawsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: userawsTable
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
